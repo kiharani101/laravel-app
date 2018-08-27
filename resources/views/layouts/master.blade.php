@@ -4,7 +4,10 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <title>The Kiharani | Home</title>
+  <!-- CSRF Token -->
+  <meta name="csrf-token" content="{{ csrf_token() }}">
+
+  <title>{{ config('app.name', 'Laravel') }} | Home</title>
   <!-- Scripts -->
   <script src="{{ asset('js/app.js') }}" defer></script>
   <!-- Fonts -->
@@ -14,7 +17,7 @@
   <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body class="hold-transition sidebar-mini">
-<div class="wrapper">
+<div class="wrapper" id="app">
   <!-- Navbar -->
   <nav class="main-header navbar navbar-expand bg-white navbar-light border-bottom">
     <!-- Left navbar links -->
@@ -99,16 +102,16 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <router-link to="/dashboard" class="nav-link">
               <i class="nav-icon fa fa-tachometer-alt"></i>
               <p>
                 Dashboard
                 <span class="right badge badge-danger">New</span>
               </p>
-            </a>
+            </router-link>
           </li>
           <li class="nav-item has-treeview">
-            <a href="#" class="nav-link active">
+            <a href="#" class="nav-link">
               <i class="nav-icon fa fa-user-cog"></i>
               <p>
                 Management
@@ -131,7 +134,7 @@
             </ul>
           </li>
           <li class="nav-item has-treeview">
-            <a href="#" class="nav-link active">
+            <a href="#" class="nav-link">
               <i class="nav-icon fa fa-user-check"></i>
               <p>
                 My Account
@@ -140,10 +143,10 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <router-link to="/profile" class="nav-link">
                   <i class="fa fa-user nav-icon"></i>
                   <p>Profile</p>
-                </a>
+                </router-link>
               </li>
               <li class="nav-item">
                 <a href="#" class="nav-link">
@@ -168,7 +171,9 @@
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
-
+  <div class="container-fluid">
+    <router-view></router-view>
+  </div>
   </div>
 
   <!-- Control Sidebar -->
